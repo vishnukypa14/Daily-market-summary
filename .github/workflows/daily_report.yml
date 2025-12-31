@@ -2,8 +2,11 @@ name: Daily Market Report
 
 on:
   schedule:
-    - cron: '0 10 * * 1-5'   # 3:30 PM IST
+    - cron: '30 11 * * 1-5'
   workflow_dispatch:
+
+permissions:
+  contents: write   # IMPORTANT
 
 jobs:
   run-report:
@@ -25,3 +28,11 @@ jobs:
       - name: Run report
         run: |
           python main.py
+
+      - name: Commit and push image
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add daily_market_report.png
+          git commit -m "Auto: daily market report"
+          git push
