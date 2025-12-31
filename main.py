@@ -2,6 +2,8 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
+import os
+
 
 
 def get_index_data(symbol):
@@ -51,3 +53,5 @@ for i in range(len(summary)):
 
 table.scale(1, 1.5)
 plt.savefig("daily_market_report.png", bbox_inches="tight", dpi=200)
+print("Image generated:", os.path.exists("daily_market_report.png"))
+
